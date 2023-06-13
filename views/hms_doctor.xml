@@ -1,0 +1,30 @@
+<odoo>
+<data>
+<record id="doctor_action" model="ir.actions.act_window">
+<field name="name">Doctors</field>
+<field name="res_model">hms.doctor</field>
+</record> 
+
+<record id="doctor_form" model="ir.ui.view">
+<field name="name">hms doctor form</field>
+<field name="model">hms.doctor</field>
+<field name="arch" type="xml">
+<form string="doctor">
+<sheet>
+<group>
+<field name="firstName"/>
+<field name="lastName"/>
+<field name="image"/>
+</group>
+
+<group>
+<field name="patient_ids" readonly='True'/>
+</group>
+</sheet>
+</form>
+</field>
+</record>
+
+<menuitem  name="doctor" id="doctor_menu" parent="hms_menu" action="doctor_action" groups="manger_group"/>
+</data>
+</odoo>

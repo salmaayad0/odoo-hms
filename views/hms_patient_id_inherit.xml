@@ -1,0 +1,36 @@
+<odoo>
+<data>
+<record id="hms_patient_id_inherit" model="ir.ui.view">
+<field name="name">hms patient inherit form</field>
+<field name="model">res.partner</field>
+<field name="inherit_id" ref="base.view_partner_form"/>
+<field name="arch" type="xml">
+<xpath 
+expr="//notebook//page[@name='sales_purchases']//group[@name='container_row_2']//group[@name='misc']" 
+position="inside">
+<field name="related_patient_id"/>
+</xpath>
+
+<!-- <xpath expr="//field[@name='vat']" position="attributes">
+<attributes name="required">1</attributes>
+</xpath> -->
+
+</field>
+</record>
+
+<record id="hms_patient_list_id_inherit" model="ir.ui.view">
+<field name="name">hms patient inherit list</field>
+<field name="model">res.partner</field>
+<field name="inherit_id" ref="base.view_partner_tree"/>
+<field name="arch" type="xml">
+
+<xpath 
+expr="//field[@name='email']" position="after">
+<field name="website"/>
+</xpath>
+</field>
+</record>
+
+
+</data>
+</odoo>

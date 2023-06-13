@@ -1,0 +1,82 @@
+<odoo>
+<data>
+<record id="patient_action" model="ir.actions.act_window">
+<field name="name">Patients</field>
+<field name="res_model">hms.patient</field>
+</record>
+
+<record id="patient_tree" model="ir.ui.view">
+<field name="name">hms patient tree</field>
+<field name="model">hms.patient</field>
+<field name="arch" type="xml">
+<tree string="Patient Data">
+<field name="firstName"/>
+<field name="lastName"/>
+<field name="age"/>
+</tree>
+</field>
+</record>
+
+<record id="patient_form" model="ir.ui.view">
+<field name="name">hms patient form</field>
+<field name="model">hms.patient</field>
+<field name="arch" type="xml">
+<form string="Patient Data">
+<header>
+<button name="state_approve" type="object" string = 'Approve' />
+<field name="state" widget="statusbar" nolobel="1" options="{'clickable' : '1'}"/>
+</header>
+
+<sheet>
+<notebook>
+<page string="Basic Info">
+<group string="Basic Info">
+<field name="firstName"/>
+<field name="lastName"/>
+<field name="email"/>
+<field name="age"/>
+<field name="birthDate"/>
+<field name="address"/>
+</group>
+</page>
+
+<page string="Medical Info">
+<group string="Medical Info">
+<field name="history" attrs = "{ 'invisible' : [('age' ,'&lt;', 50)]}"/>
+<field name="CR_ratio" attrs = "{ 'required' : [('PCR' ,'=', True)]}"/>
+<field name="bloodType"/>
+<field name="PCR"/>
+<field name="state"/>
+</group>
+</page>
+
+<page string="Additional">
+<group>
+<field name="image"/>
+<field name="department_id" domain="[('is_oppened','=',True)]"/>
+<field name="department_capacity"/>
+<field name="doctors_ids" attrs="{'readonly': [('department_id','=', True)]}"/>
+</group>
+</page>
+
+<!-- history log  -->
+<page string="history log">
+<field name="history_logs">
+<tree>
+<field name="create_date"/>
+<field name="description"/>
+</tree>
+</field>
+</page>
+
+</notebook>
+</sheet>
+</form>
+</field>
+</record>
+
+
+<menuitem  name="hms" id="hms_menu"/>
+<menuitem  name="patient" id="patient_menu" parent="hms_menu" action="patient_action" />
+</data>
+</odoo>

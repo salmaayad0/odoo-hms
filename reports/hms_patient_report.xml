@@ -1,0 +1,101 @@
+<odoo>
+    <data>
+        <template id="hms_patient_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+
+                            <div class="row">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-danger"><strong>Patient Status Report</strong></span>
+                                    <span t-field="o.image" t-options='{"widget": "image"}' />
+                                </div>
+                            </div>
+
+                            <table class="table borderless" style="height:100px;">
+                                <tr class="text-center">
+                                    <td class=" mr-2 text-center">
+                                        Name:
+                                        <span t-field="o.name"/>
+                                    </td>
+                                    <td class=" mr-2 text-center">
+                                        Birth Date:
+                                        <span t-field="o.birth_date"/>
+                                    </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td class=" mr-2 text-center">
+                                        age:
+                                        <span t-field="o.age"/>
+                                    </td>
+                                    <td class=" mr-2 text-center">
+                                        PCR:
+                                        <span t-field="o.PCR"/>
+                                    </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td class=" mr-2 text-center">
+                                        department:
+                                        <span t-field="o.department_id"/>
+                                    </td>
+                                    <td class=" mr-2 text-center">
+                                        Blood Type:
+                                        <span t-field="o.bloodType"/>
+                                    </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td class=" mr-2 text-center">
+                                        doctors:
+                                        <span t-field="o.doctors_ids"/>
+                                    </td>
+                                    <td class=" mr-2 text-center">
+                                        email:
+                                        <span t-field="o.email"/>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                            <div>
+                                <center>
+                                    <strong>
+                                        Log History
+                                    </strong>
+                                </center>
+
+                            </div>
+
+                            <table class="table table-sm table-bordered table-primary">
+                                <thead style="display: table-row-group">
+                                    <tr class="table-primary border border-white">
+                                        <th class="text-center border border-white">user</th>
+                                        <th class="text-center border border-white">create_date</th>
+                                        <th class="text-center border border-white">Info</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="counter" t-value="0"/>
+                                    <t t-foreach="o.level_logs" t-as="A">
+                                        <t t-set="counter" t-value="counter + 1"/>
+                                        <tr class="border border-white">
+                                            <td class="text-center border table-info border-white">
+                                                <span t-field="A.create_uid" />
+                                            </td>
+                                            <td class="text-center border table-info border-white">
+                                                <span t-field="A.create_date"/>
+                                            </td>
+                                            <td class="text-center border table-info border-white">
+                                                <span t-field="A.description" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
